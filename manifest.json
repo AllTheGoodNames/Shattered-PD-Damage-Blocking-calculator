@@ -1,0 +1,16 @@
+{
+  "short_name": "DiceCalc",
+  "name": "Shattered PD Damage Calculator",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/806/806131.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#14362a",
+  "theme_color": "#d4af37",
+  "display": "standalone",
+  "scope": "./"
+}
