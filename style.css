@@ -1,0 +1,134 @@
+:root {
+            --forest-green: #14362a;
+            --deep-green: #1b4332;
+            --gold: #d4af37;
+            --light-gold: #f1e4bc;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; }
+        
+        body { 
+            font-family: -apple-system, system-ui, sans-serif; 
+            margin: 0;
+            padding: 20px; 
+            background-color: var(--forest-green); 
+            color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container { 
+            width: 100%;
+            max-width: 400px; 
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px; 
+            border-radius: 20px; 
+            border: 2px solid var(--gold);
+            backdrop-filter: blur(10px);
+        }
+
+        <!--Sets input prompt style-->
+        h2 { 
+            margin: 0 0 5px 0; 
+            color: var(--gold); 
+            text-align: center;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        p { 
+            text-align: center; 
+            font-size: 0.85rem; 
+            margin-bottom: 20px; 
+            color: var(--light-gold);
+        }
+
+        .input-stack { 
+            display: flex;
+            flex-direction: column;
+            gap: 12px; 
+            margin-bottom: 25px; 
+        }
+
+        .input-group { 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .checkbox_stack {display:flex; flex-direction:row;}
+
+        label { 
+            font-size: 0.7rem; 
+            font-weight: bold; 
+            margin-bottom: 4px; 
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        input { 
+            padding: 12px; 
+            border: 1px solid var(--gold); 
+            border-radius: 8px; 
+            font-size: 1.1rem; 
+            background: var(--deep-green);
+            color: white;
+            outline: none;
+            width: 100%;
+        }
+
+        input:focus { border-color: var(--white); background: #23543f; }
+
+        #result-container { 
+            text-align: center; 
+            padding: 20px; 
+            background: var(--gold); 
+            border-radius: 12px; 
+            color: var(--forest-green);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            font-size:30px;
+            font-weight:Bold;
+        }
+
+        .res-label { font-size: 0.75rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 2px;
+            opacity: 0.8;
+        }
+        #result {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .accuracy {}
+        
+        .hidden { display:none !important; }
+        
+        .MainMenuGrid {
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+            max-width: 600px;
+            margin-left:auto;
+            margin-right:auto;
+            }
+        .ImageStack {
+            position:relative;
+            height:100%;
+            width:100%;
+        }
+        .BaseLayer {
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:1;
+        }
+        .TopLayer {
+            position:absolute;
+            top:0;
+            left:0;
+            z-index:2;
+        }
+        
