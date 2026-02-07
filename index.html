@@ -1,206 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dice Probability - Mobile</title>
+    <title>Block Probability</title>
     <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/806/806131.png">
-
-    <style>
-        :root {
-            --forest-green: #14362a;
-            --deep-green: #1b4332;
-            --gold: #d4af37;
-            --light-gold: #f1e4bc;
-            --white: #ffffff;
-        }
-
-        * { box-sizing: border-box; }
-
-        body { 
-            font-family: -apple-system, system-ui, sans-serif; 
-            margin: 0;
-            padding: 20px; 
-            background-color: var(--forest-green); 
-            color: var(--white);
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-        }
-
-        .container { 
-            width: 100%;
-            max-width: 400px; 
-            background: rgba(255, 255, 255, 0.05);
-            padding: 25px; 
-            border-radius: 20px; 
-            border: 2px solid var(--gold);
-            backdrop-filter: blur(10px);
-        }
-
-        h2 { 
-            margin: 0 0 5px 0; 
-            color: var(--gold); 
-            text-align: center;
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        p { 
-            text-align: center; 
-            font-size: 0.85rem; 
-            margin-bottom: 20px; 
-            color: var(--light-gold);
-        }
-
-        .input-stack { 
-            display: flex;
-            flex-direction: column;
-            gap: 12px; 
-            margin-bottom: 25px; 
-        }
-
-        .input-group { 
-            display: flex; 
-            flex-direction: column; 
-        }
-
-        label { 
-            font-size: 0.7rem; 
-            font-weight: bold; 
-            margin-bottom: 4px; 
-            color: var(--gold);
-            text-transform: uppercase;
-        }
-
-        input { 
-            padding: 12px; 
-            border: 1px solid var(--gold); 
-            border-radius: 8px; 
-            font-size: 1.1rem; 
-            background: var(--deep-green);
-            color: white;
-            outline: none;
-            width: 100%;
-        }
-
-        input:focus { border-color: var(--white); background: #23543f; }
-
-        #result-container { 
-            text-align: center; 
-            padding: 20px; 
-            background: var(--gold); 
-            border-radius: 12px; 
-            color: var(--forest-green);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .res-label { font-size: 0.75rem; font-weight: 800; display: block; margin-bottom: 2px; opacity: 0.8; }
-        #result { font-size: 2.2rem; font-weight: 900; line-height: 1; }
-    </style>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/806/806131.png">
+    <link rel="stylesheet" href="style.css">
+    
+    
 </head>
+
 <body>
-
-<div class="container">
-    <h2>Odds Calculator</h2>
-    <p>Chance that <strong>Attack roll &lt; Defense roll</strong></p>
-
-    <div class="input-stack">
-        <div class="input-group">
-            <label for="Dmax">Maximum Defense</label>
-            <input type="number" id="Dmax" value="12" inputmode="numeric">
+    <section id="MainMenu" class="MainMenuGrid">
+        <div class="container" class="ImageStack" onclick="LoadCalc(1);"><img src="Assets/Images/Greatshield.jpg"></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+    <section id="DamageBlockChanceCalculator">
+        <div class="container">
+            <h2>Odds Calculator</h2>
+            <p>Chance that <strong>Attack deals damage</strong></p>
+            <!--Defines inputs and input labels-->
+            <div class="checkbox_stack">
+                <label for="Accenabled">Enable Accuracy?</label>
+                <input type="checkbox" id="Accenabled" onchange="AccuracyEnabled();calculatefulldamageblockchance();">
+            </div>
+            <div class="input-stack">
+                <div class="input-group fullblockcheck">
+                    <label for="Dmax">Maximum Defense</label>
+                    <input type="number" id="Dmax" value="1" inputmode="numeric">
+                </div>
+                <div class="input-group fullblockcheck">
+                    <label for="Dmin">Minimum Defense</label>
+                    <input type="number" id="Dmin" value="1" inputmode="numeric">
+                </div>
+                <div class="input-group fullblockcheck">
+                    <label for="Amax">Maximum Attack</label>
+                    <input type="number" id="Amax" value="1" inputmode="numeric">
+                </div>
+                <div class="input-group fullblockcheck">
+                    <label for="Amin">Minimum Attack</label>
+                    <input type="number" id="Amin" value="1" inputmode="numeric">
+                </div>
+                <div class="input-group accuracy">
+                    <label for="Acc">Accuracy</label>
+                    <input type="number" id="Acc" value="1" inputmode="numeric">
+                </div>
+                <div class="input-group accuracy">
+                    <label for="Eva">Evasion </label>
+                    <input type="number" id="Eva" value="0" inputmode="numeric">
+                </div>
+            </div>
+            <!--Creates the result box-->
+            <div id="result-container">
+                <span class="res-label">PROBABILITY</span>
+                <div id="FullBlockRateResult">--</div>
+            </div>
         </div>
-        <div class="input-group">
-            <label for="Dmin">Set D Minimum Defense</label>
-            <input type="number" id="Dmin" value="1" inputmode="numeric">
-        </div>
-        <div class="input-group">
-            <label for="Amax">Maximum Attack</label>
-            <input type="number" id="Amax" value="10" inputmode="numeric">
-        </div>
-        <div class="input-group">
-            <label for="Amin">Minimum Attack</label>
-            <input type="number" id="Amin" value="1" inputmode="numeric">
-        </div>
-    </div>
-
-    <div id="result-container">
-        <span class="res-label">PROBABILITY</span>
-        <div id="result">--</div>
-    </div>
-</div>
-
-<script>
-    function calculate() {
-        const dmax = parseInt(document.getElementById('Dmax').value);
-        const dmin = parseInt(document.getElementById('Dmin').value);
-        const amax = parseInt(document.getElementById('Amax').value);
-        const amin = parseInt(document.getElementById('Amin').value);
-
-        const n = dmax - dmin + 1;
-        const m = amax - amin + 1;
-
-        if (isNaN(n) || isNaN(m) || n < 1 || m < 1) {
-            document.getElementById('result').innerText = "---";
-            return;
-        }
-
-        // PMF for Set D (Sum of two dice)
-        const pmfD = {};
-        for (let s = 2; s <= 2 * n; s++) {
-            const actualSum = s + 2 * (dmin - 1);
-            pmfD[actualSum] = (n - Math.abs(s - (n + 1))) / (n * n);
-        }
-
-        // CDF for Set A (Sum of two dice)
-        const cdfA = {};
-        let cumulative = 0;
-        for (let s = 2; s <= 2 * m; s++) {
-            const actualSum = s + 2 * (amin - 1);
-            cumulative += (m - Math.abs(s - (m + 1))) / (m * m);
-            cdfA[actualSum] = cumulative;
-        }
-
-        let totalProb = 0;
-        const sumsD = Object.keys(pmfD).map(Number);
-        const minA = 2 * amin;
-        const maxA = 2 * amax;
-
-        sumsD.forEach(sd => {
-            const probSd = pmfD[sd];
-            
-            // To find P(A < D), we need the probability that A is 
-            // at most (D - 1).
-            const threshold = sd - 1; 
-
-            let probALess;
-            if (threshold < minA) {
-                // If D-1 is less than the minimum possible A, 
-                // A can never be less than D.
-                probALess = 0;
-            } else if (threshold >= maxA) {
-                // If D-1 is equal to or greater than the maximum possible A, 
-                // then A is guaranteed to be less than D.
-                probALess = 1;
-            } else {
-                probALess = cdfA[threshold];
-            }
-            totalProb += probSd * probALess;
-        });
-
-        document.getElementById('result').innerText = (totalProb * 100).toFixed(2) + "%";
+    </section>
+    <script src="work.js"></script>
+    <script src="Armour_Block_Chance.js"></script>
+    <script>
+    let CalcChoice=0
+   function switcher() {
+       
+       hidesections();
+       console.log("switcher booted successfully")
+       
+    if(CalcChoice===0){
+        console.log("switcher working for 0")
+        document.getElementById('MainMenu').classList.remove('hidden');
     }
-
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(el => el.addEventListener('input', calculate));
-
-    calculate();
-</script>
-
+    
+    else if(CalcChoice===1){
+        console.log("switcher working for 1")
+        document.getElementById('DamageBlockChanceCalculator').classList.remove('hidden');
+        AccuracyEnabled();
+        calculatefulldamageblockchance();
+    }
+    };
+    switcher();
+    </script>
 </body>
+
 </html>
