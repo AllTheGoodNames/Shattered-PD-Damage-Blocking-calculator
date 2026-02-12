@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Block Probability</title>
+    <title>SHPD Utilities</title>
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -15,22 +15,51 @@
 </head>
 
 <body>
+    
+    <section id="UndoButton" class="TopLayerUndo">
+        <div onclick="LoadCalc(0);"><img src="Assets/Images/BackButton.jpg"></div>
+    </section>
+    
+    <div id="MenuInfographicDivChalice" class="hidden container" style="position:absolute; backdrop-filter: blur(10000px); z-index:100">
+        
+    </div>
+    
     <section id="MainMenu" class="MainMenuGrid">
-        <div class="container" class="ImageStack" onclick="LoadCalc(1);"><img src="Assets/Images/Greatshield.jpg"></div>
-        <div></div>
+        <h1 style="grid-column: span 2; text-align: center;">SHPD Utilities</h1>
+        <div class="container" class="ImageStack">
+            <img src="Assets/Images/Greatshield.jpg" style="width:100px" onclick="LoadCalc(1);">
+            <h3>Full Damage Blocking Chance</h3>
+            <img src="Assets/Images/QuestionMark.png" onclick="MenuInfographicBlock();" style="mix-blend-mode: multiply; width:20px; position:relative; left:40px">
+        </div>
+        <div class="container" class="ImageStack">
+            <img src="Assets/Images/Chalice.png" style="width:100px" onclick="LoadCalc(2);">
+            <h3>Chalice Of Blood Damage</h3>
+            <img src="Assets/Images/QuestionMark.png" onclick="MenuInfographicChalice();" style="mix-blend-mode: multiply; width:20px; position:relative; left:40px">
+        </div>
         <div></div>
         <div></div>
         <div></div>
         <div></div>
     </section>
-    <section id="DamageBlockChanceCalculator">
+    
+    <section id="MainMenuInformation">
+        <div class="container" id="BlockMenuInformation">
+            hello
+        </div>
+    </section>
+    
+    <section id="DamageBlockChanceCalculator" class="BaseLayer">
         <div class="container">
             <h2>Odds Calculator</h2>
-            <p>Chance that <strong>Attack deals damage</strong></p>
+            <p>Chance that <strong>Attack does not deal damage</strong></p>
             <!--Defines inputs and input labels-->
             <div class="checkbox_stack">
+                 <input type="checkbox" id="Accenabled" onchange="AccuracyEnabled();calculatefulldamageblockchance();">
                 <label for="Accenabled">Enable Accuracy?</label>
-                <input type="checkbox" id="Accenabled" onchange="AccuracyEnabled();calculatefulldamageblockchance();">
+            </div>
+            <div class="checkbox_stack">
+                <input type="checkbox" id="BlockThresholdEnabled" onchange="calculatefulldamageblockchance();BlockThresholdEn();">
+                <label for="BlockThresholdEnabled">Enable Block Thresholds?</label>
             </div>
             <div class="input-stack">
                 <div class="input-group fullblockcheck">
@@ -57,36 +86,126 @@
                     <label for="Eva">Evasion </label>
                     <input type="number" id="Eva" value="0" inputmode="numeric">
                 </div>
+                <div class="input-group BlockThresholdClass">
+                    <label for="BlockThreshold">Damage Threshold</label>
+                    <input type="number" id="BlockThreshold" value="0" inputmode="numeric">
+                </div>
             </div>
             <!--Creates the result box-->
-            <div id="result-container">
+            <div id="ResultContainer">
                 <span class="res-label">PROBABILITY</span>
                 <div id="FullBlockRateResult">--</div>
             </div>
         </div>
     </section>
+    
+    <section id="ChaliceSection" class="BaseLayer">
+        <div class="container">
+            <h2>Chalice of Blood</h2>
+            <p>Damage taken from Chalice</p>
+            <div class="RadioSection">
+                <p style="color: var(--gold); text-transform: uppercase; font-weight: 800;">Choose Armour Tier</p>
+                <div>
+                    <div style="height:7px"></div>
+                <label for="NoneChalice" style="position:relative; left:4px">
+                <img src="Assets/Images/Nothing.svg">
+                </label>
+                <input type="radio" id="NoneChalice" name="ArmourTierChalice" style="margin-top: 4px;" value="0" checked="true">
+                </div>
+                <div>
+                    <label for="ClothChalice">
+                        <img src="Assets/Images/Cloth.png" class="ArmourTier">
+                    </label>
+                    <input type="radio" id="ClothChalice" name="ArmourTierChalice" value="1">
+                </div>
+                <div>
+                    <label for="LeatherChalice">
+                        <img src="Assets/Images/Leather.png" class="ArmourTier">
+                    </label>
+                    <input type="radio" id="LeatherChalice" name="ArmourTierChalice" value="2">
+                </div>
+                <div>
+                    <label for="MailChalice">
+                        <img src="Assets/Images/Mail.png" class="ArmourTier">
+                    </label>
+                    <input type="radio" id="MailChalice" name="ArmourTierChalice" value="3">
+                </div>
+                <div>
+                    <label for="ScaleChalice">
+                        <img src="Assets/Images/Scale.png" class="ArmourTier">
+                    </label>
+                    <input type="radio" id="ScaleChalice" name="ArmourTierChalice" value="4">
+                </div>
+                <div>
+                    <label for="PlateChalice">
+                        <img src="Assets/Images/Plate.png" class="ArmourTier">
+                    </label>
+                    <input type="radio" id="PlateChalice" name="ArmourTierChalice" value="5">
+                </div>
+            </div>
+            <div class="ArmourLevelForChalice">
+                <label for="ArmourLevel">Armour Level</label>
+                <input type="number" id="ArmourLevel" value="0" inputmode="numeric">
+            </div>
+            <div>
+                <label for="ChaliceLevel">Chalice Level</label>
+                <input type="number" id="ChaliceLevel" value="0" inputmode="numeric">
+            </div>
+            <div class="checkbox_stack" style="margin-top:20px">
+                 <input type="checkbox" id="ShieldingChalice" onchange="switcher;">
+                <label for="ShieldingChalice">Potion Of Shielding</label>
+            </div>
+            <div id="ResultContainer" style="margin-top:20px">
+                <span class="res-label">Damage:</span>
+                <div id="ResultChalice">--</div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+    
+    
     <script src="JS/work.js"></script>
     <script src="JS/Armour_Block_Chance.js"></script>
+    <script src="JS/ChaliceDamage.js"></script>
     <script>
-    let CalcChoice=0
+    
+
+    
+    let CalcChoice=0;
+    
    function switcher() {
        
        hidesections();
-       console.log("switcher booted successfully")
+       document.getElementById('UndoButton').classList.remove('hidden');
+      // console.log("switcher booted successfully")
        
     if(CalcChoice===0){
         console.log("switcher working for 0")
         document.getElementById('MainMenu').classList.remove('hidden');
+        document.getElementById('UndoButton').classList.add('hidden');
     }
     
     else if(CalcChoice===1){
         console.log("switcher working for 1")
         document.getElementById('DamageBlockChanceCalculator').classList.remove('hidden');
         AccuracyEnabled();
+        BlockThresholdEn();
         calculatefulldamageblockchance();
+    }
+    else if(CalcChoice===2){
+        console.log("switcher working for 2")
+        document.getElementById('ChaliceSection').classList.remove('hidden');
+        ImportValuesChalice();
     }
     };
     switcher();
+    
+        // This is to render inputs
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(el => el.addEventListener('input', switcher));
     </script>
 </body>
 
