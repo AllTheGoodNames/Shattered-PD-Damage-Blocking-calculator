@@ -143,8 +143,8 @@
         }
         .TopLayerUndo {
             position:absolute;
-            top:-90px;
-           right:133px;
+            top:-75px;
+           right:210px;
             z-index:2000;
             transform: scale(0.3);
             mix-blend-mode: screen;
