@@ -1,14 +1,12 @@
-let MenuInfographicChaliceCheck = 0
-
-function MenuInfographicChalice() {
-    MenuInfographicChaliceCheck= 1 - MenuInfographicChaliceCheck
-    console.log(MenuInfographicChaliceCheck)
-    if(!MenuInfographicChaliceCheck){
+function MenuInfographicChalice(v) {
+    if(!v){
         document.getElementById('MenuInfographicDivChalice').classList.add('hidden');
+        document.getElementById('CloseInfographic').classList.add('hidden');
+    
     }
     else {
         document.getElementById('MenuInfographicDivChalice').classList.remove('hidden');
-        console.log("Removed")
+        document.getElementById('CloseInfographic').classList.remove('hidden');
     }
 }
 

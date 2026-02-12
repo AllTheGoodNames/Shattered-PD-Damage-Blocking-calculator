@@ -1,3 +1,15 @@
+function MenuInfographicBlock(v) {
+    if(!v){
+        document.getElementById('MenuInfographicDivBlock').classList.add('hidden');
+        document.getElementById('CloseInfographic').classList.add('hidden');
+    
+    }
+    else {
+        document.getElementById('MenuInfographicDivBlock').classList.remove('hidden');
+        document.getElementById('CloseInfographic').classList.remove('hidden');
+    }
+}
+
 //console.log("Js loading properly")
 function calculatefulldamageblockchance() {
     //console.log("calculatefulldamageblockchance loaded properly")
@@ -105,8 +117,4 @@ function BlockThresholdEn() {
     }
 }
 
-function MenuInfographicBlock() {
-    document.getElementById('BlockMenuInformation').classList.remove('hidden')
-    console.log("Showing Information")
-}
 function SettingsBlock() {}
