@@ -57,14 +57,32 @@
             display: flex; 
             flex-direction: column; 
         }
-        .checkbox_stack {display:flex; flex-direction:row;}
+        .checkbox_stack {
+            display:grid;
+            grid-template-columns: 0fr 1fr;
+            align-items: center;
+            gap:6px;
+            width:100%;
+            margin-left:0px;
+            padding:0px;
+            vertical-align: top;
+            }
+            
+        input[type="checkbox"]{
+            transform: scale(1);
+            height: 0.7rem;
+            margin-bottom: 7px;
+        }
 
-        label { 
+        label,h3 { 
             font-size: 0.7rem; 
             font-weight: bold; 
             margin-bottom: 4px; 
             color: var(--gold);
             text-transform: uppercase;
+        }
+        h3 {
+            text-align: center;
         }
 
         input { 
@@ -80,7 +98,7 @@
 
         input:focus { border-color: var(--white); background: #23543f; }
 
-        #result-container { 
+        #ResultContainer { 
             text-align: center; 
             padding: 20px; 
             background: var(--gold); 
@@ -120,15 +138,26 @@
             width:100%;
         }
         .BaseLayer {
-            position:absolute;
-            top:0;
-            left:0;
+          position:absolute;
             z-index:1;
         }
-        .TopLayer {
+        .TopLayerUndo {
             position:absolute;
-            top:0;
-            left:0;
-            z-index:2;
+            top:-90px;
+           right:133px;
+            z-index:2000;
+            transform: scale(0.3);
+            mix-blend-mode: screen;
         }
+        .BlockThresholdClass {}
         
+        .RadioSection {
+            display:flex;
+            flex-direction: row;
+        }
+        .ArmourTier {
+          height:32px;
+          position: relative;
+          left: 10px;
+        }
+        .ArmourTierForChalice {}
