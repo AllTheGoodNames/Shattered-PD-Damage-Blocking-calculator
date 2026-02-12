@@ -19,9 +19,27 @@
     <section id="UndoButton" class="TopLayerUndo">
         <div onclick="LoadCalc(0);"><img src="Assets/Images/BackButton.jpg"></div>
     </section>
+    <section id="CloseInfographic" class="TopLayerUndo">
+          <div onclick="MenuInfographicChalice(0);MenuInfographicBlock(0);"><img src="Assets/Images/BackButton.jpg"></div>
+    </section>
     
     <div id="MenuInfographicDivChalice" class="hidden container" style="position:absolute; backdrop-filter: blur(10000px); z-index:100">
-        
+        <h1 style="text-align: center">Chalice of Blood</h1>
+        <p>This calculator is able to calculate how much damage can be recieved from the chalice of blood.</p>
+        <p>It takes into consideration:</p>
+        <p>•Armour Tier•</p>
+        <p>•Armour Level•</p>
+        <p>•Chalice Level•</p>
+        <p>•Potions of Shielding•</p>
+        <p>The result is the range of damage you can take, as well as the average damage dealt.</p>
+    </div>
+    <div id="MenuInfographicDivBlock" class="hidden container" style="position:absolute; backdrop-filter: blur(10000px); z-index:100">
+        <h1 style="text-align: center">Damage block rate calculator</h1>
+        <p>This calculator is built to test how strong your armour or weapon is against an enemy</p>
+        <p>This will give you the chance of taking 0 damage from an attack (use your defense and the enemies attack) or the chance of not dealing any damage to an enemy(use your attack the the enemy's defense) upon successfuk hit</p>
+        <p>There are also settings to help calculate with more data</p>
+        <p>The first includes accuracy checks in the calculations</p>
+        <p>The second changes the criteria from taking 0 damage to taking up to a specific threshold of damage</p>
     </div>
     
     <section id="MainMenu" class="MainMenuGrid">
@@ -29,13 +47,15 @@
         <div class="container" class="ImageStack">
             <img src="Assets/Images/Greatshield.jpg" style="width:100px" onclick="LoadCalc(1);">
             <h3>Full Damage Blocking Chance</h3>
-            <img src="Assets/Images/QuestionMark.png" onclick="MenuInfographicBlock();" style="mix-blend-mode: multiply; width:20px; position:relative; left:40px">
+            <img src="Assets/Images/QuestionMark.png" onclick="MenuInfographicBlock(1);" style="mix-blend-mode: multiply; width:20px; position:relative; left:40px">
         </div>
+        
         <div class="container" class="ImageStack">
             <img src="Assets/Images/Chalice.png" style="width:100px" onclick="LoadCalc(2);">
             <h3>Chalice Of Blood Damage</h3>
-            <img src="Assets/Images/QuestionMark.png" onclick="MenuInfographicChalice();" style="mix-blend-mode: multiply; width:20px; position:relative; left:40px">
+            <img src="Assets/Images/QuestionMark.png" onclick="MenuInfographicChalice(1);" style="mix-blend-mode: multiply; width:20px; position:relative; left:40px">
         </div>
+        
         <div></div>
         <div></div>
         <div></div>
