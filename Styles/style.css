@@ -161,3 +161,20 @@
           left: 10px;
         }
         .ArmourTierForChalice {}
+        .BestiaryGrid {
+            display:grid;
+            grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        }
+        .BestiaryContainer {
+            width: 100%;
+            max-width: 400px; 
+            background: rgba(255, 255, 255, 0.05);
+            padding-top:15px;
+            padding-bottom: 15px;
+            border: 2px solid var(--gold);
+            backdrop-filter: blur(10px);
+            text-align: center
+        }
+        .SewerClass {
+            background:#000;
+        }
