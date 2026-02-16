@@ -15,12 +15,12 @@
 </head>
 
 <body>
-    
+    <section id="LoadingScreen"><img src="Assets/Images/RatKing.png" style="position:absolute; z-index: 10000; transform:scale(100);"></section>
     <section id="UndoButton" class="TopLayerUndo">
         <div onclick="LoadCalc(0);"><img src="Assets/Images/BackButton.jpg"></div>
     </section>
     <section id="CloseInfographic" class="TopLayerUndo">
-          <div onclick="MenuInfographicChalice(0);MenuInfographicBlock(0);"><img src="Assets/Images/BackButton.jpg"></div>
+        <div onclick="MenuInfographicChalice(0);MenuInfographicBlock(0);"><img src="Assets/Images/BackButton.jpg"></div>
     </section>
     
     <div id="MenuInfographicDivChalice" class="hidden container" style="position:absolute; backdrop-filter: blur(10000px); z-index:100">
@@ -44,29 +44,29 @@
     
     <section id="MainMenu" class="MainMenuGrid">
         <h1 style="grid-column: span 2; text-align: center;">SHPD Utilities</h1>
-        <div class="container" class="ImageStack">
-            <img src="Assets/Images/Greatshield.jpg" style="width:100px" onclick="LoadCalc(1);">
+        <div class="container">
+            <img src="Assets/Images/Greatshield.jpg" style="width:100px" onclick="LoadCalc(1);" alt="Greatshield">
             <h3>Full Damage Blocking Chance</h3>
-            <img src="Assets/Images/QuestionMark.png" onclick="MenuInfographicBlock(1);" style="mix-blend-mode: multiply; width:20px; position:relative; left:40px">
+            <img src="Assets/Images/QuestionMark.png" onclick="MenuInfographicBlock(1);" style="mix-blend-mode: multiply; width:20px; position:relative; left:40px" alt="Info Popup">
         </div>
         
-        <div class="container" class="ImageStack">
-            <img src="Assets/Images/Chalice.png" style="width:100px" onclick="LoadCalc(2);">
+        <div class="container">
+            <img src="Assets/Images/Chalice.png" style="width:100px" onclick="LoadCalc(2);" alt="Chalice">
             <h3>Chalice Of Blood Damage</h3>
-            <img src="Assets/Images/QuestionMark.png" onclick="MenuInfographicChalice(1);" style="mix-blend-mode: multiply; width:20px; position:relative; left:40px">
+            <img src="Assets/Images/QuestionMark.png" onclick="MenuInfographicChalice(1);" style="mix-blend-mode: multiply; width:20px; position:relative; left:40px" alt="Info Popup">
         </div>
         
-        <div></div>
+        <div class="container">
+            <img src="Assets/Images/RatKing.png" style="width:100px" onclick="LoadCalc(3);" alt="Chalice">
+            <h3>Chalice Of Blood Damage</h3>
+            <img src="Assets/Images/QuestionMark.png" onclick="MenuInfographicChalice(1);" style="mix-blend-mode: multiply; width:20px; position:relative; left:40px" alt="Info Popup">
+        </div>
+        
         <div></div>
         <div></div>
         <div></div>
     </section>
     
-    <section id="MainMenuInformation">
-        <div class="container" id="BlockMenuInformation">
-            hello
-        </div>
-    </section>
     
     <section id="DamageBlockChanceCalculator" class="BaseLayer">
         <div class="container">
@@ -74,7 +74,7 @@
             <p>Chance that <strong>Attack does not deal damage</strong></p>
             <!--Defines inputs and input labels-->
             <div class="checkbox_stack">
-                 <input type="checkbox" id="Accenabled" onchange="AccuracyEnabled();calculatefulldamageblockchance();">
+                <input type="checkbox" id="Accenabled" onchange="AccuracyEnabled();calculatefulldamageblockchance();">
                 <label for="Accenabled">Enable Accuracy?</label>
             </div>
             <div class="checkbox_stack">
@@ -127,10 +127,10 @@
                 <p style="color: var(--gold); text-transform: uppercase; font-weight: 800;">Choose Armour Tier</p>
                 <div>
                     <div style="height:7px"></div>
-                <label for="NoneChalice" style="position:relative; left:4px">
-                <img src="Assets/Images/Nothing.svg">
-                </label>
-                <input type="radio" id="NoneChalice" name="ArmourTierChalice" style="margin-top: 4px;" value="0" checked="true">
+                    <label for="NoneChalice" style="position:relative; left:4px">
+                        <img src="Assets/Images/Nothing.svg">
+                    </label>
+                    <input type="radio" id="NoneChalice" name="ArmourTierChalice" style="margin-top: 4px;" value="0" checked="true">
                 </div>
                 <div>
                     <label for="ClothChalice">
@@ -172,7 +172,7 @@
                 <input type="number" id="ChaliceLevel" value="0" inputmode="numeric">
             </div>
             <div class="checkbox_stack" style="margin-top:20px">
-                 <input type="checkbox" id="ShieldingChalice" onchange="switcher;">
+                <input type="checkbox" id="ShieldingChalice" onchange="switcher;">
                 <label for="ShieldingChalice">Potion Of Shielding</label>
             </div>
             <div id="ResultContainer" style="margin-top:20px">
@@ -182,50 +182,85 @@
         </div>
     </section>
     
-    
-    
+   
+    <section id="BestiarySection" class="BaseLayer">
+        <img src="Assets/Images/RightArrowTriangle.png" style="position:absolute; width:20px;transform:scaleX(-1); left:80px; top:85px" onclick="BestiaryScrollerFunction(0)">
+        <img src="Assets/Images/RightArrowTriangle.png" style="position:absolute; width:20px; right:80px;top:85px; mix-blend-mode: screen;" onclick="BestiaryScrollerFunction(1)">
+        <h1 style="text-align: center;">Bestiary</h1>
+        <h2 style="text-align: center;" id="BestiaryScrollerMenuName">Sewer</h2>
+        
+        <div id="BestiaryListSewer" style="width:350px"></div>
+        <div id="BestiaryListPrison" style="width:350px"></div>
+        <div id="BestiaryListCaves" style="width:350px"></div>
+        <div id="BestiaryListCity" style="width:350px"></div>
+        <div id="BestiaryListHalls" style="width:350px"></div>
+        <div id="BestiaryListNonRegional" style="width:350px"></div>
+        <div id="BestiaryListMiniBoss" style="width:350px"></div>
+        <div id="BestiaryListBoss" style="width:350px"></div>
+        
+       <template id="MobTemplate">
+            <div class="container BestiaryGrid">
+            <div style="grid-column:span 7;" class="BestiaryContainer MobName">
+                
+            </div>
+            <div class="BestiaryContainer" style="grid-row: span 2;"><p style="margin-top: 50px;">Health</p></div><div class="BestiaryContainer" style="grid-column: span 2;"><p>Damage</p></div><div class="BestiaryContainer" style="grid-column: span 2;"><p>Armour</p></div><div class="BestiaryContainer" style="grid-row: span 2;"><p style="margin-top:50px">Acc</p></div><div class="BestiaryContainer" style="grid-row: span 2;"><p style="margin-top:50px">Eva</p></div><div class="BestiaryContainer"><p>Min</p></div><div class="BestiaryContainer"><p>Max</p></div><div class="BestiaryContainer"><p>Min</p></div><div class="BestiaryContainer"><p>Max</p></div>
+            
+            <div class="BestiaryContainer MobHP"></div>
+            <div class="BestiaryContainer MobMinDamage"></div>
+            <div class="BestiaryContainer MobMaxDamage"></div>
+            <div class="BestiaryContainer MobMinArmour"></div>
+            <div class="BestiaryContainer MobMaxArmour"></div>
+            <div class="BestiaryContainer MobAcc"></div>
+            <div class="BestiaryContainer MobEva"></div>
+            <div class="BestiaryContainer MobExtraInfo" style="grid-column: span 7; grid-row: span 3;"></div>
+            
+        </div>
+        </template>
+    </section>
     
     
     
     <script src="JS/work.js"></script>
     <script src="JS/Armour_Block_Chance.js"></script>
     <script src="JS/ChaliceDamage.js"></script>
+    <script src="JS/BestiaryCode.js"></script>
     <script>
-    
-
-    
-    let CalcChoice=0;
-    
-   function switcher() {
-       
-       hidesections();
-       document.getElementById('UndoButton').classList.remove('hidden');
-      // console.log("switcher booted successfully")
-       
-    if(CalcChoice===0){
-        console.log("switcher working for 0")
-        document.getElementById('MainMenu').classList.remove('hidden');
-        document.getElementById('UndoButton').classList.add('hidden');
-    }
-    
-    else if(CalcChoice===1){
-        console.log("switcher working for 1")
-        document.getElementById('DamageBlockChanceCalculator').classList.remove('hidden');
-        AccuracyEnabled();
-        BlockThresholdEn();
-        calculatefulldamageblockchance();
-    }
-    else if(CalcChoice===2){
-        console.log("switcher working for 2")
-        document.getElementById('ChaliceSection').classList.remove('hidden');
-        ImportValuesChalice();
-    }
-    };
-    switcher();
-    
+        let CalcChoice = 3;
+        
+        function switcher() {
+            
+            hidesections();
+            document.getElementById('UndoButton').classList.remove('hidden');
+            // console.log("switcher booted successfully")
+            
+            if (CalcChoice === 0) {
+                console.log("switcher working for 0")
+                document.getElementById('MainMenu').classList.remove('hidden');
+                document.getElementById('UndoButton').classList.add('hidden');
+            }
+            
+            else if (CalcChoice === 1) {
+                console.log("switcher working for 1")
+                document.getElementById('DamageBlockChanceCalculator').classList.remove('hidden');
+                AccuracyEnabled();
+                BlockThresholdEn();
+                calculatefulldamageblockchance();
+            }
+            else if (CalcChoice === 2) {
+                console.log("switcher working for 2")
+                document.getElementById('ChaliceSection').classList.remove('hidden');
+                ImportValuesChalice();
+            }
+            else if (CalcChoice === 3) {
+                console.log("switcher working for 3")
+                document.getElementById('BestiarySection').classList.remove('hidden');
+            }
+        };
+        switcher();
+        
         // This is to render inputs
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(el => el.addEventListener('input', switcher));
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(el => el.addEventListener('input', switcher));
     </script>
 </body>
 
